@@ -10,4 +10,6 @@ else
     app.UseExceptionHandler("/Error");
 }
 
+app.UseStaticFiles();
+
 app.Run();
