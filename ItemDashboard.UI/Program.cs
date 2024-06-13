@@ -1,6 +1,12 @@
 using ItemDashboard.UI.Middlewares;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Host Configuration
+// add support to logging with SERILOG
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration));
 
 // Services Configuration
 builder.Services.AddControllersWithViews();
@@ -20,6 +26,7 @@ else
 }
 
 app.UseStaticFiles();   // enable public folder (wwwroot)
+app.UseSerilogRequestLogging(); // enable logging request to file
 app.UseRouting();       // enable conventional routing
 app.UseEndpoints(endpoints =>
 {
