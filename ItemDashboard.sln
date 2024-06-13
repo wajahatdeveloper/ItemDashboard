@@ -3,21 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemDashboard.UI", "ItemDashboard.UI\ItemDashboard.UI.csproj", "{6F7BEC10-AE4F-4F0B-AE95-6A51BDB8586B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemDashboard.UI", "ItemDashboard.UI\ItemDashboard.UI.csproj", "{6F7BEC10-AE4F-4F0B-AE95-6A51BDB8586B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemDashboard.Core", "ItemDashboard.Core\ItemDashboard.Core.csproj", "{A8348E70-C6F4-43C3-8544-F42EEC8077ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemDashboard.Core", "ItemDashboard.Core\ItemDashboard.Core.csproj", "{A8348E70-C6F4-43C3-8544-F42EEC8077ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemDashboard.Infrastructure", "ItemDashboard.Infrastructure\ItemDashboard.Infrastructure.csproj", "{539EEFC9-4FC2-4130-BBEA-CD55F2BCFB0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemDashboard.Infrastructure", "ItemDashboard.Infrastructure\ItemDashboard.Infrastructure.csproj", "{539EEFC9-4FC2-4130-BBEA-CD55F2BCFB0D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{43A0F7AA-8A13-4B2C-82EE-DA205FD40F82}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{52AFD6E5-7B9B-4A06-950C-D5D976EBF278}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemDashboard.ServiceTests", "ItemDashboard.ServiceTests\ItemDashboard.ServiceTests.csproj", "{11CB84A8-F25D-43BB-B634-7E5119F44842}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemDashboard.ServiceTests", "ItemDashboard.ServiceTests\ItemDashboard.ServiceTests.csproj", "{11CB84A8-F25D-43BB-B634-7E5119F44842}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemDashboard.IntegrationTests", "ItemDashboard.IntegrationTests\ItemDashboard.IntegrationTests.csproj", "{D31C08A6-E42E-4B44-89F6-69689BD73805}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemDashboard.IntegrationTests", "ItemDashboard.IntegrationTests\ItemDashboard.IntegrationTests.csproj", "{D31C08A6-E42E-4B44-89F6-69689BD73805}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemDashboard.ControllerTests", "ItemDashboard.ControllerTests\ItemDashboard.ControllerTests.csproj", "{A409C58F-B190-459B-A517-BCC205767D96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemDashboard.ControllerTests", "ItemDashboard.ControllerTests\ItemDashboard.ControllerTests.csproj", "{A409C58F-B190-459B-A517-BCC205767D96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12E0A5B5-C609-4250-B5DC-FFEF7E1842CF}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -11,16 +11,24 @@ var app = builder.Build();
 
 if (builder.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
+    app.UseDeveloperExceptionPage();    // development error page
 }
 else
 {
-    app.UseExceptionHandler("/Error");
-    app.UseMiddleware<ExceptionHandlingMiddleware>();
+    app.UseExceptionHandler("/Error");  // production error page
+    app.UseMiddleware<ExceptionHandlingMiddleware>();   // exception safety net
 }
 
-app.UseStaticFiles();
-app.UseRouting();
-app.MapControllers();
+app.UseStaticFiles();   // enable public folder (wwwroot)
+app.UseRouting();       // enable conventional routing
+app.UseEndpoints(endpoints =>
+{
+    // conventional routing
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+});
+app.MapControllers();   // enable attribute routing
 
 app.Run();
