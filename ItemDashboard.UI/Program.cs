@@ -1,3 +1,5 @@
+using ItemDashboard.UI.Middlewares;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Services Configuration
@@ -14,6 +16,7 @@ if (builder.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Error");
+    app.UseMiddleware<ExceptionHandlingMiddleware>();
 }
 
 app.UseStaticFiles();
