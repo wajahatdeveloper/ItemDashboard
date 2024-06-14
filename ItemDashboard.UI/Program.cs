@@ -1,4 +1,5 @@
 using ItemDashboard.UI.Middlewares;
+using Microsoft.OpenApi.Models;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,17 @@ builder.Host.UseSerilog((HostBuilderContext context, IServiceProvider services, 
 });
 
 // Services Configuration
+
 builder.Services.AddControllersWithViews();
+builder.Services.AddSwaggerGen(c => // register the Swagger generator, defining 1 or more Swagger documents
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Dashboard API",
+        Version = "v1",
+        Description = "An API for Items Dashboard"
+    });
+});
 
 var app = builder.Build();
 
@@ -30,6 +41,7 @@ else
 
 app.UseStaticFiles();   // enable public folder (wwwroot)
 app.UseSerilogRequestLogging(); // enable logging request to file
+
 app.UseRouting();       // enable conventional routing
 app.UseEndpoints(endpoints =>
 {
@@ -40,5 +52,14 @@ app.UseEndpoints(endpoints =>
     );
 });
 app.MapControllers();   // enable attribute routing
+
+if (builder.Environment.IsDevelopment())
+{
+    app.UseSwagger();   // enable middleware to serve generated Swagger as a JSON endpoint.
+    app.UseSwaggerUI(c =>   // enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Dashboard API V1"); // specifying the Swagger JSON endpoint.
+    });
+}
 
 app.Run();
