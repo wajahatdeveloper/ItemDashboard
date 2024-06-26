@@ -11,7 +11,6 @@
     <Folder Include="DomainAccess\Services\" />
     <Folder Include="Domain\Enums\" />
     <Folder Include="Supports\Helpers\" />
-    <Folder Include="Supports\DTO\" />
   </ItemGroup>
 
 </Project>
