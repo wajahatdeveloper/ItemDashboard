@@ -3,7 +3,6 @@
 namespace ItemDashboard.UI.Areas.Support.Controllers;
 
 [Area("Support")]
-[Route("[area]/[controller]")]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;

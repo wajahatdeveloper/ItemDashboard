@@ -13,7 +13,6 @@ builder.Host.UseSerilog((HostBuilderContext context, IServiceProvider services, 
 });
 
 // Services Configuration
-
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen(c => // register the Swagger generator, defining 1 or more Swagger documents
 {
@@ -28,7 +27,6 @@ builder.Services.AddSwaggerGen(c => // register the Swagger generator, defining 
 var app = builder.Build();
 
 // Middleware Pipeline
-
 if (builder.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();    // development error page
