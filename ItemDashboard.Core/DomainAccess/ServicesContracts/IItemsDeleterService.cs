@@ -17,5 +17,5 @@ public interface IItemsDeleterService
     /// </summary>
     /// <param name="request"></param>
     /// <returns></returns>
-    Task DeleteItemByID(Guid Id);
+    Task<bool> DeleteItemByID(Guid id);
 }

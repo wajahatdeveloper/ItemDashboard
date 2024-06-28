@@ -17,5 +17,5 @@ public interface IItemsUpdaterService
     /// </summary>
     /// <param name="request"></param>
     /// <returns></returns>
-    Task<ItemResponse> UpdateItem(ItemAddRequest request);
+    Task<ItemResponse> UpdateItem(ItemUpdateRequest request);
 }

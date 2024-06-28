@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DomainAccess\Services\" />
     <Folder Include="Domain\Enums\" />
-    <Folder Include="Supports\Helpers\" />
   </ItemGroup>
 
 </Project>
