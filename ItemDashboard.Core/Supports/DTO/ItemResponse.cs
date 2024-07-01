@@ -51,9 +51,9 @@ public static class ItemExtensions
             Description = item.Description,
 
             CreatedDate = item.CreatedDate,
-            CreatedBy = item.CreatedBy,
-            UpdatedBy = item.UpdatedBy,
             UpdatedDate = item.UpdatedDate,
+           /* CreatedBy = item.CreatedBy,
+            UpdatedBy = item.UpdatedBy,*/
         };
     }
 }

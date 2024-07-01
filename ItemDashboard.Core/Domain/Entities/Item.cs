@@ -31,8 +31,8 @@ public class Item
     /// </summary>
     public DateTime CreatedDate { get; set; }
     public DateTime UpdatedDate { get; set; }
-    public DateTime CreatedBy { get; set; }
-    public DateTime UpdatedBy { get; set; }
+    /*public DateTime CreatedBy { get; set; }
+    public DateTime UpdatedBy { get; set; }*/
 
     public override string ToString()
     {
