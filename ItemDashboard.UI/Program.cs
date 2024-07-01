@@ -1,4 +1,6 @@
+using ItemDashboard.Infrastructure;
 using ItemDashboard.UI.Middlewares;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Serilog;
 
@@ -22,6 +24,10 @@ builder.Services.AddSwaggerGen(c => // register the Swagger generator, defining 
         Version = "v1",
         Description = "An API for Items Dashboard"
     });
+});
+builder.Services.AddDbContext<ApplicationDbContext>(options => 
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
 });
 
 var app = builder.Build();
