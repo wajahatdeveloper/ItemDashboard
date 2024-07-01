@@ -23,7 +23,7 @@ public class Item
     [StringLength(40)] //nvarchar(40)
     public string Name { get; set; } = "";
     [Required]
-    [StringLength(200)] //nvarchar(200)
+    [StringLength(512)] //nvarchar(512)
     public string Description { get; set; } = "";
     
     /// <summary>
