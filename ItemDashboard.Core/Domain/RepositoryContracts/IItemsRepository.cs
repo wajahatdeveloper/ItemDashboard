@@ -14,8 +14,8 @@ public interface IItemsRepository
     /// </summary>
     Task<Item> AddItem(Item item);
     Task<Item> UpdateItem(Item item);
-    Task DeleteItemById(Guid id);
-    Task<Item> GetItemById(Guid id);
+    Task<bool> DeleteItemById(Guid id);
+    Task<Item?> GetItemById(Guid id);
 
     /// <summary>
     /// Advanced CRUD Methods
