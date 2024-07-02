@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\POS\Data\" />
+    <Folder Include="Areas\POS\Models\" />
     <Folder Include="Areas\Support\Data\" />
     <Folder Include="Areas\Support\Models\" />
     <Folder Include="wwwroot\" />
