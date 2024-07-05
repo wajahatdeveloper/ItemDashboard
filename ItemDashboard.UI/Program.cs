@@ -63,7 +63,7 @@ app.UseEndpoints(endpoints =>
     // conventional routing
     endpoints.MapControllerRoute(
       name: "areas",
-      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+      pattern: "{area:exists=POS}/{controller=Home}/{action=Index}/{id?}"
     );
 });
 app.MapControllers();   // enable attribute routing
