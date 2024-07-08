@@ -4,11 +4,26 @@
 <script type="module">
     import {
         Grid,
-        html
+        html,
+        h
     } from "https://unpkg.com/gridjs?module";
 
     const grid = new Grid({
-        columns: ['Name', 'Description', 'Created', 'Updated'],
+        columns: ['Name', 'Description', 'Created', 'Updated', {
+            name: 'Actions',
+            formatter: (cell, row) => {
+                return [
+                    h('button', {
+                        className: 'btn btn-secondary',
+                        onClick: () => alert(`Editing ${row.cells[0].data}`)
+                    }, 'Edit'),
+
+                    h('button', {
+                        className: 'btn btn-danger',
+                        onClick: () => alert(`Deleting ${row.cells[0].data}`)
+                    }, 'Delete')]
+            }
+        }],
         data: [
     @foreach (ItemResponse item in Model)
     {
@@ -16,7 +31,7 @@
                 ['@item.Name', '@item.Description', '@item.CreatedDate', '@item.UpdatedDate'],
         </text>
     }
-        ],
+            ],
         resizable: true,
         sort: true
     }).render(document.getElementById("grid-table"));

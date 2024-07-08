@@ -54,6 +54,7 @@ else
     app.UseMiddleware<ExceptionHandlingMiddleware>();   // exception safety net
 }
 
+app.UseDefaultFiles();
 app.UseStaticFiles();   // enable public folder (wwwroot)
 app.UseSerilogRequestLogging(); // enable logging request to file
 
