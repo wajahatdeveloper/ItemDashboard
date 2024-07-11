@@ -4,6 +4,7 @@ using ItemDashboard.Core.DomainAccess.ServicesContracts;
 using ItemDashboard.Infrastructure;
 using ItemDashboard.Infrastructure.Repositories;
 using ItemDashboard.UI.Middlewares;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Serilog;
@@ -39,8 +40,22 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
 });
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddRateLimiter(_ => _
+    .AddTokenBucketLimiter("tokenPolicy", options =>
+    {
+        options.TokenLimit = 10;
+        options.QueueProcessingOrder = System.Threading.RateLimiting.QueueProcessingOrder.OldestFirst;
+        options.QueueLimit = 2;
+        options.ReplenishmentPeriod = TimeSpan.FromSeconds(2);
+        options.TokensPerPeriod = 4;
+        options.AutoReplenishment = false;
+    })
+);
+
 
 var app = builder.Build();
+
+app.UseRateLimiter();
 
 // Middleware Pipeline
 if (builder.Environment.IsDevelopment())
