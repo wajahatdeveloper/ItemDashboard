@@ -1,4 +1,3 @@
-using AspNetCoreRateLimit;
 using ItemDashboard.Core.Domain.RepositoryContracts;
 using ItemDashboard.Core.DomainAccess.Services;
 using ItemDashboard.Core.DomainAccess.ServicesContracts;
@@ -40,15 +39,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection"));
 });
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-builder.Services.AddMemoryCache();
-builder.Services.AddInMemoryRateLimiting();     // Add services to store rate limit counters and rules in memory.
-builder.Services.Configure<ClientRateLimitOptions>(
-        builder.Configuration.GetSection("ClientRateLimiting")    // Load default rate limit options from appsettings.json
-    );
-builder.Services.Configure<ClientRateLimitPolicies>(
-        builder.Configuration.GetSection("ClientRateLimitPolicies")     // Load client-specific policies from appsettings.json
-    );
-builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
 var app = builder.Build();
 
@@ -68,7 +58,6 @@ app.UseDefaultFiles();
 app.UseStaticFiles();   // enable public folder (wwwroot)
 app.UseSerilogRequestLogging(); // enable logging request to file
 
-app.UseClientRateLimiting();
 app.UseRouting();       // enable conventional routing
 app.UseEndpoints(endpoints =>
 {
