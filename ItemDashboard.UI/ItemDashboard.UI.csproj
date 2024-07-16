@@ -11,6 +11,7 @@
     <Folder Include="Areas\POS\Models\" />
     <Folder Include="Areas\Support\Data\" />
     <Folder Include="Areas\Support\Models\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,74 +1,74 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="utf-8">
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Items Dashboard">
+	<meta name="author" content="WajahatDeveloper">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+	<link rel="preconnect" href="https://www.fonts.gstatic.com/index.html">
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-    <title>@ViewBag.Title</title>
+	<title>@ViewBag.Title</title>
 
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:wght@300;400;600&display=swap">
 
-    <!-- Nucleo Icons -->
-    <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+	<!-- Choose your prefered color scheme -->
+	<!-- <link href="css/light.css" rel="stylesheet"> -->
+	<link rel="stylesheet" href="css/dark.css">
 
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+	<!-- Grid.js CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
 
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120946860-10"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
 
-    <!-- CSS Files -->
-    <link id="pagestyle" href="./assets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
-
-    <!-- Nepcha Analytics (nepcha.com) -->
-    <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
-    <script defer data-site="localhost" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
-
-    <!-- Grid.js CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+		gtag('config', 'UA-120946860-10', { 'anonymize_ip': true });
+	</script>
 
 </head>
 
-<body class="g-sidenav-show  bg-gray-100">
+<!--
+HOW TO USE:
+data-theme: default (default), dark, light, colored
+data-layout: fluid (default), boxed
+data-sidebar-position: left (default), right
+data-sidebar-layout: default (default), compact
+-->
 
-    @{
-        await Html.RenderPartialAsync("_SideBar");
-    }
+<body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
+	<div class="wrapper">
 
-    <main class="main-content border-radius-lg ">
-        @{
-            await Html.RenderPartialAsync("_NavBar");
-        }
+		@{
+			await Html.RenderPartialAsync("_SideBar");
+		}
 
-        @RenderBody();
-    </main>
+		<div class="main">
+			<main class="content">
 
-    <!--   Core JS Files   -->
-    <script src="./assets/js/core/popper.min.js"></script>
-    <script src="./assets/js/core/bootstrap.min.js"></script>
-    <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
+				@{
+					await Html.RenderPartialAsync("_NavBar");
+				}
 
-    <script>
-        var win = navigator.platform.indexOf('Win') > -1;
-        if (win && document.querySelector('#sidenav-scrollbar')) {
-          var options = {
-            damping: '0.5'
-          }
-          Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-        }
-    </script>
+				@RenderBody();
 
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+			</main>
 
-    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="./assets/js/material-dashboard.min.js?v=3.1.0"></script>
+			@{
+				await Html.RenderPartialAsync("_Footer");
+			}
+
+		</div>
+	</div>
+
+	<script src="js/app.js"></script>
+
 </body>
-
 </html>
