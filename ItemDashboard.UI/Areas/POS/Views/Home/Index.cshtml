@@ -21,17 +21,26 @@
     } from "https://unpkg.com/gridjs?module";
 
     const grid = new Grid({
-        columns: ['Name', 'Description', 'Created', 'Updated', {
+        columns: [{ name: 'ID', hidden: true }, 'Name', 'Description', 'Created', 'Updated', {
             name: 'Actions',
             formatter: (cell, row) => {
                 return [
                     h('button', {
-                        className: 'btn btn-secondary',
-                        onClick: () => alert(`Editing ${row.cells[0].data}`)
+                        className: 'btn btn-secondary m-1',
+                        onClick: () =>{ 
+                            $.ajax({
+                                url: '@Url.Action("EditItem", "Home")',
+                                type: 'post',
+                                data: { id: row.cells[0].data }
+                            }).done(function () {
+                                alert('Added');
+                            });
+                            alert(`Editing ${row.cells[0].data}`)
+                        }
                     }, 'Edit'),
 
                     h('button', {
-                        className: 'btn btn-danger',
+                        className: 'btn btn-danger m-1',
                         onClick: () => alert(`Deleting ${row.cells[0].data}`)
                     }, 'Delete')]
             }
@@ -40,7 +49,7 @@
     @foreach (ItemResponse item in Model)
     {
         <text>
-                ['@item.Name', '@item.Description', '@item.CreatedDate', '@item.UpdatedDate'],
+                ['@item.Id', '@item.Name', '@item.Description', '@item.CreatedDate', '@item.UpdatedDate'],
         </text>
     }
             ],

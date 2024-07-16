@@ -20,7 +20,17 @@ public class HomeController : Controller
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-        _logger.LogInformation("Hello from POS!");
+        _logger.LogInformation("List all Items");
+
+        var items = await _itemsGetterService.GetAllItems();
+
+        return View(items.ToList());
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> EditItem()
+    {
+        _logger.LogInformation("Edit Single Item");
 
         var items = await _itemsGetterService.GetAllItems();
 
