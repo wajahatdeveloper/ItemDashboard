@@ -9,7 +9,7 @@ namespace ItemDashboard.Core.Supports.Helpers;
 
 public class ValidationHelper
 {
-    internal static void ModelValidation(object obj)
+    public static void ModelValidation(object obj)
     {
         ValidationContext validationContext = new ValidationContext(obj);
         List<ValidationResult> validationResults = new List<ValidationResult>();

@@ -1,5 +1,4 @@
 ﻿using ItemDashboard.Core.Domain.Entities;
-using ItemDashboard.Core.DomainAccess.ServicesContracts;
 using ItemDashboard.Core.Supports.DTO;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,27 +8,13 @@ namespace ItemDashboard.UI.Areas.POS.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly IItemsGetterService _itemsGetterService;
-    private readonly IItemsUpdaterService _itemsUpdaterService;
 
-    public HomeController(ILogger<HomeController> logger, IItemsGetterService itemsGetterService, IItemsUpdaterService itemsUpdaterService)
+    public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
-        _itemsGetterService = itemsGetterService;
-        _itemsUpdaterService = itemsUpdaterService;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> Index()
-    {
-        // get data to populate the index view
-        var items = await _itemsGetterService.GetAllItems();
-
-        // render and return the index view
-        return View(items.ToList());
-    }
-
-    [HttpGet]
+  /*  [HttpGet]
     [Route("[action]/{id}")]
     public async Task<IActionResult> Edit([FromRoute] Guid id)
     {
@@ -64,5 +49,5 @@ public class HomeController : Controller
 
         // Render Edit View
         return View(item);
-    }
+    }*/
 }

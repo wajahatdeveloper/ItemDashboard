@@ -1,8 +1,6 @@
-using ItemDashboard.Core.Domain.RepositoryContracts;
-using ItemDashboard.Core.DomainAccess.Services;
-using ItemDashboard.Core.DomainAccess.ServicesContracts;
 using ItemDashboard.Infrastructure;
-using ItemDashboard.Infrastructure.Repositories;
+using ItemDashboard.Infrastructure.Services;
+using ItemDashboard.Infrastructure.ServicesContracts;
 using ItemDashboard.UI.Middlewares;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
@@ -21,11 +19,7 @@ builder.Host.UseSerilog((HostBuilderContext context, IServiceProvider services, 
 
 // Services Configuration
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IItemsRepository, ItemsRepository>();
-builder.Services.AddScoped<IItemsAdderService, ItemsAdderService>();
-builder.Services.AddScoped<IItemsGetterService, ItemsGetterService>();
-builder.Services.AddScoped<IItemsDeleterService, ItemsDeleterService>();
-builder.Services.AddScoped<IItemsUpdaterService, ItemsUpdaterService>();
+builder.Services.AddScoped<IItemsService, ItemsService>();
 builder.Services.AddSwaggerGen(c => // register the Swagger generator, defining 1 or more Swagger documents
 {
     c.SwaggerDoc("v1", new OpenApiInfo
