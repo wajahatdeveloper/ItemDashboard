@@ -27,15 +27,13 @@
                 return [
                     h('button', {
                         className: 'btn btn-secondary m-1',
-                        onClick: () =>{ 
+                        onClick: () => {
+                            let itemId = row.cells[0].data;
                             $.ajax({
-                                url: '@Url.Action("EditItem", "Home")',
-                                type: 'post',
-                                data: { id: row.cells[0].data }
-                            }).done(function () {
-                                alert('Added');
+                                url: '@Url.Action("Edit", "Home", new { id = "replaceToken" })'.replace("replaceToken",itemId),
+                                type: 'get',
+                                data: null
                             });
-                            alert(`Editing ${row.cells[0].data}`)
                         }
                     }, 'Edit'),
 

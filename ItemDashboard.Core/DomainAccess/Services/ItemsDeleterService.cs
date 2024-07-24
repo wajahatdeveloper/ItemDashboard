@@ -22,9 +22,6 @@ public class ItemsDeleterService : IItemsDeleterService
 
     public async Task<bool> DeleteItemByID(Guid id)
     {
-        // check if request is not null
-        if (id == null) throw new ArgumentNullException(nameof(id));
-
         // retreive domain object from repository
         Item? item = await _itemsRepository.GetItemById(id);
 

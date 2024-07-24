@@ -41,6 +41,17 @@ public class ItemResponse : IEquatable<ItemResponse>
 
 public static class ItemExtensions
 {
+    public static ItemUpdateRequest ToItemUpdateRequest(this ItemResponse item)
+    {
+        return new ItemUpdateRequest()
+        {
+            Id = item.Id,
+
+            Name = item.Name,
+            Description = item.Description,
+        };
+    }
+
     public static ItemResponse ToItemResponse(this Item item)
     {
         return new ItemResponse()

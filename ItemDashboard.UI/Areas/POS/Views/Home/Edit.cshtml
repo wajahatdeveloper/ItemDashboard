@@ -1,0 +1,43 @@
+﻿@model ItemUpdateRequest
+
+@{
+	ViewBag.Title = "Edit Item";
+}
+
+<div class="card">
+	<div class="card-header">
+		<h5 class="card-title">Basic form</h5>
+		<h6 class="card-subtitle text-muted">Default Bootstrap form layout.</h6>
+	</div>
+	<div class="card-body">
+		<form asp-controller="Items" asp-action="Update" method="post" >
+
+			<input type="hidden" asp-for="Id" />
+
+			@*Item Name*@
+			<div class="mb-3 form-field flex">
+				<div class="w-25">
+					<label asp-for="Name" class="form-label">Item Name</label>
+				</div>
+				<div class="flex-1">
+					<input asp-for="Name" class="form-control">
+					<span asp-validation-for="Name" class="text-red"></span>
+				</div>
+			</div>
+			
+			@*Item Description*@
+			<div class="mb-3 form-field flex">
+				<div class="w-25">
+					<label asp-for="Description" class="form-label">Item Description</label>
+				</div>
+				<div class="flex-1">
+					<textarea asp-for="Description" class="form-control"></textarea>
+					<span asp-validation-for="Description" class="text-red"></span>
+				</div>
+			</div>
+
+			@*Submit Button*@
+			<button type="submit" class="btn btn-primary">Update</button>
+		</form>
+	</div>
+</div>

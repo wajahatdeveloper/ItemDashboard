@@ -34,9 +34,6 @@ public class ItemsGetterService : IItemsGetterService
 
     public async Task<ItemResponse?> GetItemByID(Guid id)
     {
-        // check if request is not null
-        if (id == null) throw new ArgumentNullException(nameof(id));
-
         // retreive domain object from repository
         Item? item = await _itemsRepository.GetItemById(id);
 

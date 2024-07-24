@@ -25,7 +25,12 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Item>().ToTable("Items");
 
         string itemsJson = File.ReadAllText("Items_seed.json");
-        List<Item> items = JsonSerializer.Deserialize<List<Item>>(itemsJson);
+        List<Item>? items = JsonSerializer.Deserialize<List<Item>>(itemsJson);
+        if (items == null)
+        {
+            throw new NullReferenceException(nameof(items));
+        }
+
         foreach (Item item in items)
         {
             modelBuilder.Entity<Item>().HasData(item);
