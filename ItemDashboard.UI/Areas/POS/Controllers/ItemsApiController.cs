@@ -12,7 +12,8 @@ using ItemDashboard.Core.Supports.DTO;
 
 namespace ItemDashboard.UI.Areas.POS.Controllers;
 
-[Route("api/[controller]")]
+[Area("POS")]
+[Route("api/items/[action]")]
 [ApiController]
 public class ItemsApiController : ControllerBase
 {
@@ -23,16 +24,18 @@ public class ItemsApiController : ControllerBase
         this.itemsService = itemsService;
     }
 
-    // GET: api/ItemsApi
+    // GET: api/items
     [HttpGet]
+    [Route("")]
     public async Task<ActionResult<IEnumerable<ItemResponse>>> GetItems()
     {
         var items = await itemsService.GetAllItems();
         return new ActionResult<IEnumerable<ItemResponse>>(items);
     }
 
-    // GET: api/ItemsApi/5
-    [HttpGet("{id}")]
+    // GET: api/items/55555-55555-55555
+    [HttpGet]
+    [Route("{id}")]
     public async Task<ActionResult<ItemResponse>> GetItem(Guid id)
     {
         var item = await itemsService.GetItemByID(id);
@@ -45,9 +48,10 @@ public class ItemsApiController : ControllerBase
         return new ActionResult<ItemResponse>(item);
     }
 
-    // PUT: api/ItemsApi/5
+    // PUT: api/items/55555-55555-55555
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-    [HttpPut("{id}")]
+    [HttpPut]
+    [Route("{id}")]
     public async Task<IActionResult> PutItem(ItemUpdateRequest request)
     {
         var itemResponse = await itemsService.UpdateItem(request);
@@ -59,9 +63,10 @@ public class ItemsApiController : ControllerBase
         return NoContent();
     }
 
-    // POST: api/ItemsApi
+    // POST: api/items
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
+    [Route("")]
     public async Task<ActionResult<Item>> PostItem(ItemAddRequest request)
     {
         var itemResponse = await itemsService.AddItem(request);
@@ -69,8 +74,9 @@ public class ItemsApiController : ControllerBase
         return CreatedAtAction(nameof(GetItem), new { id = itemResponse.Id }, itemResponse);
     }
 
-    // DELETE: api/ItemsApi/5
-    [HttpDelete("{id}")]
+    // DELETE: api/items/55555-55555-55555
+    [HttpDelete]
+    [Route("{id}")]
     public async Task<IActionResult> DeleteItem(Guid id)
     {
         bool response = await itemsService.DeleteItemByID(id);

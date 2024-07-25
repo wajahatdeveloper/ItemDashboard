@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ItemDashboard.Core.Domain.Entities;
 using ItemDashboard.Infrastructure;
+using ItemDashboard.Infrastructure.ServicesContracts;
+using ItemDashboard.Core.Supports.DTO;
 
 namespace ItemDashboard.UI.Areas.POS.Controllers;
 
@@ -14,85 +16,73 @@ namespace ItemDashboard.UI.Areas.POS.Controllers;
 public class ItemsController : Controller
 {
     private readonly ILogger<ItemsController> _logger;
+    private readonly IItemsService itemsService;
 
-    public ItemsController(ILogger<ItemsController> logger)
+    public ItemsController(ILogger<ItemsController> logger, IItemsService itemsService)
     {
-        _logger = logger;
+        this._logger = logger;
+        this.itemsService = itemsService;
     }
 
     // GET: Items
-   /* [HttpGet]
-    [Route("/")]
-    public async Task<IActionResult> Index()
-    {
-        // get data to populate the index view
-        var items = await _itemsGetterService.GetAllItems();
+     [HttpGet]
+     [Route("/")]
+     public async Task<IActionResult> Index()
+     {
+         // get data to populate the index view
+         var items = await itemsService.GetAllItems();
 
-        // render and return the index view
-        return View(items.ToList());
-    }
+         // render and return the index view
+         return View(items.ToList());
+     }
 
-    // GET: Items/Details/5
-    public async Task<IActionResult> Details(Guid? id)
-    {
-        if (id == null)
-        {
-            return NotFound();
-        }
+    // GET: Items/Details/55555-55555-55555
+    [HttpGet]
+    [Route("[action]/{id}")]
+    public async Task<IActionResult> Details(Guid id)
+     {
+        // get data to populate the details view
+        ItemResponse? itemResponse = await itemsService.GetItemByID(id);
 
-        var item = await _itemsGetterService.GetItemByID(id.Value);
-
-        if (item == null)
-        {
-            return NotFound();
-        }
-
-        return View(item);
-    }
+        // render and return the details view
+        // in case of null data will produce toast and redirect to Index (in razor view)
+        return View(itemResponse);
+     }
 
     // GET: Items/Create
+    [HttpGet]
+    [Route("/[action]")]
     public IActionResult Create()
-    {
-        return View();
-    }
+     {
+        // render and return the create new item view
+         return View();
+     }
 
-    // GET: Items/Edit/5
-    public async Task<IActionResult> Edit(Guid? id)
-    {
-        if (id == null)
-        {
-            return NotFound();
-        }
+    // GET: Items/Edit/55555-55555-55555
+    [HttpGet]
+    [Route("[action]/{id}")]
+    public async Task<IActionResult> Edit(Guid id)
+     {
+        // get data to populate the edit view
+        ItemResponse? item = await itemsService.GetItemByID(id);
 
-        var item = await _itemsGetterService.GetItemByID(id.Value);
+        ItemUpdateRequest? updateRequest = item?.ToItemUpdateRequest();
 
-        if (item == null)
-        {
-            return NotFound();
-        }
-        return View(item);
-    }
+        // render and return the edit view
+        // in case of null data will produce toast and redirect to Index (in razor view)
+        return View(updateRequest);
+     }
 
-    // GET: Items/Delete/5
-    public async Task<IActionResult> Delete(Guid? id)
-    {
-        if (id == null)
-        {
-            return NotFound();
-        }
+    // GET: Items/Delete/55555-55555-55555
+    [HttpGet]
+    [Route("[action]/{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+     {
+        // get data to populate the delete view
+        ItemResponse? itemResponse = await itemsService.GetItemByID(id);
 
-        var item = await _itemsGetterService.GetItemByID(id.Value);
-
-        if (item == null)
-        {
-            return NotFound();
-        }
-
-        return View(item);
-    }
-
-    private bool ItemExists(Guid id)
-    {
-        return _itemsGetterService.GetAllItems().GetAwaiter().GetResult().Any(e => e.Id == id);
-    }*/
+        // render and return the delete view
+        // in case of null data will produce toast and redirect to Index (in razor view)
+        return View(itemResponse);
+     }
 }
