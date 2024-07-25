@@ -21,6 +21,8 @@ public class ItemsService : IItemsService
 
 		// generate ID
 		item.Id = Guid.NewGuid();
+		item.CreatedDate = DateTime.Now;
+		item.UpdatedDate = DateTime.Now;
 
 		// add to database
 		dbContext.Items.Add(item);
@@ -79,6 +81,7 @@ public class ItemsService : IItemsService
 		// update all details
 		item.Name = request.Name;
 		item.Description = request.Description;
+		item.UpdatedDate = DateTime.Now;
 
 		await dbContext.SaveChangesAsync();
 
