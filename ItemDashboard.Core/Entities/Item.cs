@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 
-namespace ItemDashboard.Core.Domain.Entities;
+namespace ItemDashboard.Core.Entities;
 
 /// <summary>
 /// Item Domain Model Class
@@ -22,14 +20,16 @@ public class Item
     [Required]
     [StringLength(40)] //nvarchar(40)
     public string Name { get; set; } = "";
+
     [Required]
     [StringLength(512)] //nvarchar(512)
     public string Description { get; set; } = "";
-    
+
     /// <summary>
     /// TRACKING DATA
     /// </summary>
     public DateTime CreatedDate { get; set; }
+
     public DateTime UpdatedDate { get; set; }
     /*public DateTime CreatedBy { get; set; }
     public DateTime UpdatedBy { get; set; }*/
