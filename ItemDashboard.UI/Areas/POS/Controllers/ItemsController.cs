@@ -31,7 +31,7 @@ public class ItemsController : Controller
 	// GET: Items/Details/55555-55555-55555
 	[HttpGet]
 	[Route("details/{id}")]
-	public async Task<IActionResult> DetailsView(Guid id)
+	public async Task<IActionResult> Details(Guid id)
 	{
 		// get data to populate the details view
 		Item? itemResponse = await itemsService.GetItemByID(id);
@@ -62,7 +62,7 @@ public class ItemsController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    // POST: Items/Edit/55555-55555-55555
+    // GET: Items/Edit/55555-55555-55555
     [HttpGet]
 	[Route("edit/{id}")]
 	public async Task<IActionResult> Edit(Guid id)
@@ -75,8 +75,29 @@ public class ItemsController : Controller
 		return View(item);
 	}
 
-	// GET: Items/Delete/55555-55555-55555
-	[HttpGet]
+    // POST: Items/Edit/55555-55555-55555
+    [HttpPost]
+    [Route("edit/{id}")]
+    public async Task<IActionResult> Edit(Item item)
+    {
+        // get data to populate the edit view
+        Item? fetchedItem = await itemsService.GetItemByID(item.Id);
+
+		// short circuit to all items list with an error toast
+		if (fetchedItem == null)
+		{
+			return RedirectToAction(nameof(Index));
+		}
+
+		// update item in database based on new item edits
+		Item updatedItem = await itemsService.UpdateItem(item);
+
+        // redirect to index view to show the list of all items
+        return RedirectToAction(nameof(Index));
+    }
+
+    // GET: Items/Delete/55555-55555-55555
+    [HttpGet]
 	[Route("delete/{id}")]
 	public async Task<IActionResult> Delete(Guid id)
 	{
@@ -86,5 +107,34 @@ public class ItemsController : Controller
 		// render and return the delete view
 		// in case of null data will produce toast and redirect to Index (in razor view)
 		return View(itemResponse);
+	}
+
+	// POST: Items/Delete/55555-55555-55555
+	[HttpPost]
+	[Route("delete/{id}")]
+	public async Task<IActionResult> Delete(Item item)
+	{
+		// get data to populate the delete view
+		Item? fetchedItem = await itemsService.GetItemByID(item.Id);
+
+		// short circuit to all items list with an error toast
+		if (fetchedItem == null)
+		{
+			return RedirectToAction(nameof(Index));
+		}
+
+		// update item in database based on new item edits
+		bool isDeleted = await itemsService.DeleteItemByID(item.Id);
+
+		// short circuit to all items list with an error toast
+		if (!isDeleted)
+		{
+			return RedirectToAction(nameof(Index));
+		}
+
+		// show success toast
+
+		// redirect to index view to show the list of all items
+		return RedirectToAction(nameof(Index));
 	}
 }
