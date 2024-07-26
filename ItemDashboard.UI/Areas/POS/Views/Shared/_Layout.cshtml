@@ -11,7 +11,7 @@
 	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
 	<link rel="preconnect" href="https://www.fonts.gstatic.com/index.html">
-	<link rel="shortcut icon" href="~/icons/icon-48x48.png" />
+	<link rel="shortcut icon" href="~/img/icons/icon-48x48.png" />
 
 	<title>@ViewBag.Title</title>
 
@@ -29,6 +29,13 @@
 
 		gtag('config', 'UA-120946860-10', { 'anonymize_ip': true });
 	</script>
+
+	<!-- jquery -->
+	<script src="~/js/jquery-1.6.3.js"></script>
+
+	<!-- toastr -->
+	<link href="~/css/toastr.css" rel="stylesheet" />
+	<script src="~/js/toastr.js"></script>
 
 </head>
 
@@ -55,6 +62,7 @@ data-sidebar-layout: default (default), compact
 				}
 
 				@RenderBody()
+				<partial name="_ToastNotifications">
 
 			</main>
 

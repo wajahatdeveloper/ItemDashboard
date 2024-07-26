@@ -58,6 +58,8 @@ public class ItemsController : Controller
 		// create new item in the database using the request data
 		Item createdItem = await itemsService.AddItem(item);
 
+        TempData["SuccessMessage"] = "Item created successfully!";
+
         // redirect to index view to show the list of all items
         return RedirectToAction(nameof(Index));
     }
@@ -86,11 +88,14 @@ public class ItemsController : Controller
 		// short circuit to all items list with an error toast
 		if (fetchedItem == null)
 		{
-			return RedirectToAction(nameof(Index));
+            TempData["ErrorMessage"] = "This item does not exist! Try Refreshing the page";
+            return RedirectToAction(nameof(Index));
 		}
 
 		// update item in database based on new item edits
 		Item updatedItem = await itemsService.UpdateItem(item);
+
+        TempData["SuccessMessage"] = "Item updated successfully!";
 
         // redirect to index view to show the list of all items
         return RedirectToAction(nameof(Index));
@@ -120,7 +125,8 @@ public class ItemsController : Controller
 		// short circuit to all items list with an error toast
 		if (fetchedItem == null)
 		{
-			return RedirectToAction(nameof(Index));
+            TempData["ErrorMessage"] = "This item is already deleted!";
+            return RedirectToAction(nameof(Index));
 		}
 
 		// update item in database based on new item edits
@@ -129,12 +135,14 @@ public class ItemsController : Controller
 		// short circuit to all items list with an error toast
 		if (!isDeleted)
 		{
-			return RedirectToAction(nameof(Index));
+            TempData["ErrorMessage"] = "Unexpected error during operation!";
+            return RedirectToAction(nameof(Index));
 		}
 
-		// show success toast
+        // show success toast
+        TempData["SuccessMessage"] = "Item deleted successfully!";
 
-		// redirect to index view to show the list of all items
-		return RedirectToAction(nameof(Index));
+        // redirect to index view to show the list of all items
+        return RedirectToAction(nameof(Index));
 	}
 }
