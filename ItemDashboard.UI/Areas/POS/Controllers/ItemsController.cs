@@ -30,8 +30,8 @@ public class ItemsController : Controller
 
 	// GET: Items/Details/55555-55555-55555
 	[HttpGet]
-	[Route("[action]/{id}")]
-	public async Task<IActionResult> Details(Guid id)
+	[Route("details/{id}")]
+	public async Task<IActionResult> DetailsView(Guid id)
 	{
 		// get data to populate the details view
 		Item? itemResponse = await itemsService.GetItemByID(id);
@@ -43,16 +43,28 @@ public class ItemsController : Controller
 
 	// GET: Items/Create
 	[HttpGet]
-	[Route("/[action]")]
+	[Route("/create")]
 	public IActionResult Create()
 	{
 		// render and return the create new item view
 		return View();
 	}
 
-	// POST: Items/Edit/55555-55555-55555
-	[HttpPost]
-	[Route("[action]/{id}")]
+    // POST: Items/Create
+    [HttpPost]
+    [Route("/create")]
+    public async Task<IActionResult> Create(Item item)
+    {
+		// create new item in the database using the request data
+		Item createdItem = await itemsService.AddItem(item);
+
+        // redirect to index view to show the list of all items
+        return RedirectToAction(nameof(Index));
+    }
+
+    // POST: Items/Edit/55555-55555-55555
+    [HttpGet]
+	[Route("edit/{id}")]
 	public async Task<IActionResult> Edit(Guid id)
 	{
 		// get data to populate the edit view
@@ -65,7 +77,7 @@ public class ItemsController : Controller
 
 	// GET: Items/Delete/55555-55555-55555
 	[HttpGet]
-	[Route("[action]/{id}")]
+	[Route("delete/{id}")]
 	public async Task<IActionResult> Delete(Guid id)
 	{
 		// get data to populate the delete view
