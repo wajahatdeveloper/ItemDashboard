@@ -1,0 +1,3 @@
+﻿@model string
+
+@(Html.Raw($"<div>{Model.Replace("\\n", "<br />")}</div>"))
